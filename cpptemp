@@ -1,0 +1,196 @@
+
+
+#include <iostream>
+
+
+
+#include <cstring>
+
+
+
+using namespace std;
+
+
+
+ 
+
+
+
+ 
+
+
+
+int main()
+
+
+
+{
+
+
+
+    char
+input[30]="China";//input是明文
+
+
+
+        
+//char input[30];
+
+
+
+        
+//cin.getlin(input,30);
+
+
+
+        
+char output[60];//output是密文
+
+
+
+        
+int step=1; //间隔
+
+
+
+        
+int a=97;//‘a'的ascii码
+
+
+
+        
+int inlen=strlen(input);//明文长度
+
+
+
+        
+int outlen;//密文长度
+
+
+
+    outlen=(inlen%step==0) ?
+0:1;//非整除多一个间隔
+
+
+
+        
+outlen=outlen+inlen/step;
+
+
+
+        
+int numofstep=outlen;//填充字母数
+
+
+
+        
+outlen=outlen+inlen;
+
+
+
+        
+
+
+
+
+        
+//cout<<outlen<<endl;
+
+
+
+        
+int j=0;
+
+
+
+        
+for(int i=0;i<inlen;i++){
+
+
+
+        
+    if((i+1)%step!=0){ //不需要插入字母
+
+
+
+                           
+output[j]=input[i];
+
+
+
+                  
+    j++;
+
+
+
+                  
+}
+
+
+
+                  
+if((i+1)%step==0){//需要插入字母
+
+
+
+                           
+output[j]=input[i];
+
+
+
+                  
+    j++;
+
+
+
+                           
+output[j]=char(a++);
+
+
+
+                           
+j++;
+
+
+
+                  
+}
+
+
+
+        
+
+
+
+
+        
+}
+
+
+
+    a=97+numofstep-1;
+
+
+
+        
+output[outlen-1]=char(a);//修正最后一位
+
+
+
+    output[outlen]='\0';//截断字符串
+
+
+
+        
+cout<<output;
+
+
+
+   return 0;
+
+
+
+}
+
+
+
